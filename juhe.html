@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <title>ajax</title>
+
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="city" placeholder="输入城市名 ">
+                </div>
+                <button class="cli btn btn-default" id="getWeather">查询天气</button>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row">
+    <div class="col-sm-12 text-center">
+            <button class="btn btn-primary " id="tick">获取票房</button>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+            <table class="table table-hover " id="showdetail" style="margin-top: 20px">
+                <tr class="success" >
+                    <td>排名</td>
+                    <td>影片</td>
+                    <td>榜单周数</td>
+                    <td>周末票房</td>
+                    <td>累计票房</td>
+                </tr>
+            </table>
+                <p class="hideme" id="loading">正在获取，请稍后.....</p>
+                <p class="hideme" id="sorry"> 您查找的页面暂时走丢了~</p>
+        </div>
+    </div>
+    <div class="row weather">
+        <div class="col-sm-10 col-sm-offset-1 text-center">
+            <p id="nowcity">当前天气</p>
+            <div class="wrap">
+
+                <div class="row text-left">
+                    <div class="col-sm-4" id="today" style="padding-top: 5px">
+                        <div  style="margin:0 auto;text-align: center" >
+                            <p><span class="glyphicon glyphicon-sunglasses"></p>
+                            <p>温度</p>
+                            <p>风向</p>
+                            <p>风力</p>
+                            <p>湿度</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-2" id="tp1"><div  style="margin:0 auto;text-align: center" >
+                        <p><span class="glyphicon glyphicon-sunglasses"></p>
+                        <p>24摄氏度</p>
+                        <p>24～26</p>
+                        <p>暴雨转中雨</p>
+                        <p>北风微风</p>
+                    </div></div>
+                    <div class="col-sm-2" id="tp2"><div  style="margin:0 auto;text-align: center" >
+                        <p><span class="glyphicon glyphicon-sunglasses"></p>
+                        <p>24摄氏度</p>
+                        <p>24～26</p>
+                        <p>暴雨转中雨</p>
+                        <p>北风微风</p>
+                    </div></div>
+                    <div class="col-sm-2" ip="tp3"><div  style="margin:0 auto;text-align: center" >
+                        <p><span class="glyphicon glyphicon-sunglasses"></p>
+                        <p>24摄氏度</p>
+                        <p>24～26</p>
+                        <p>暴雨转中雨</p>
+                        <p>北风微风</p>
+                    </div></div>
+                    <div class="col-sm-2" id="tp4"><div  style="margin:0 auto;text-align: center" >
+                        <p><span class="glyphicon glyphicon-sunglasses"></p>
+                        <p>24摄氏度</p>
+                        <p>24～26</p>
+                        <p>暴雨转中雨</p>
+                        <p>北风微风</p>
+                    </div></div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p></p>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    $(function () {
+        var sendurl="http://v.juhe.cn/boxoffice/rank.php"
+        var senddata={area:'CN',key:"a463374d7784d3e8b37c59b0554f30da"}
+        var weather="http://v.juhe.cn/weather/index"
+//        var weatherdata={key:"5f6ae82ac31370570703ed2b62040d41",cityname:$('#city').val()}
+
+        $('#getWeather').bind('click',function () {
+
+                var  cityname=  $('#city').val();
+            $.ajax({
+                url:weather,
+                type:"GET",
+                data:{key:"5f6ae82ac31370570703ed2b62040d41",'cityname':cityname},
+                dataType:"jsonp",
+                success:function (data) {
+                    console.log(data[0])
+//                    console.log(data.result.future['day_20170710'].weather)
+                    var today=data.result['today']
+//                    document.write(data)
+                    var tomorrow=data.result['future']
+                    var htinfo=$('#today').find('p');
+                    $('#nowcity').html("<p>"+"<text style='color:red;font-weight:200;font-size: 30px;line-height: 1.5em'>"+cityname+"</text>的天气情况</p>");
+                    htinfo[1].innerHTML=today.date_y+today.week
+                    htinfo[2].innerHTML=today.weather
+                    htinfo[3].innerHTML=today.temperature
+                    htinfo[4].innerHTML=today.dressing_advice
+                },
+                error:function () {
+                    console.log('error')
+                },
+                beforeSend:function () {
+//                    console.log(data.cityname)
+                },
+                crossDomain:true,
+                complete:function (XMLHttpRequest,status) {
+//                    console.log(status)
+                }
+            })
+
+        })
+        $('#tick').bind('click',function () {
+            var $this=$(this)
+            var film=$.ajax({
+                url:sendurl,
+                data:senddata,
+                type:'GET',
+                dataType: 'jsonp',
+                timeout:10000,
+                crossDomain: true,
+                complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+                    if(status=='timeout'){//超时,status还有success,error等值的情况
+                        film.abort();
+                        alert("超时");
+                    }
+                },
+                beforeSend:function () {
+                    $('#loading').removeClass('hideme');
+                },
+                success:function (data) {
+                    if (data.resultcode==200){
+                        console.log("success");
+                    $this.addClass("disabled");
+                    var  items=[];
+                    $.each(data.result,function (i,one) {
+                        items.push("<tr><td>"+one.rid+"</td><td>"+one.name+"</td><td>"+one.wk+"</td><td>"+one.wboxoffice+"</td><td>"+one.tboxoffice+"</td></tr>");
+                    })
+                    var newEls = items.join('');
+                    tmpcontent = $(newEls);
+                    $("#showdetail").append(tmpcontent);
+                        $('#loading').addClass('hideme');
+                    }
+                    else {
+                        console.log(data.resultcode);
+                        $('#sorry').removeClass('hideme');
+                        $('#loading').addClass('hideme');
+
+                    }
+                },
+                error:function(){
+                    $('#sorry').setAttribute("display","block");
+                }
+            })
+        })
+    })
+
+</script>
+</body>
+</html>

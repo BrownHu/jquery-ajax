@@ -1,0 +1,35 @@
+.rank > td{
+}
+body{
+    background-color: rgba(255,255,255,0.3);
+}
+p{
+    margin-top: 3em;
+    text-align: center;
+    font-size: 20px;
+    line-height:   1.5em;
+    font-weight: 200;
+}
+
+.hideme{
+    display: none;
+}
+.showme{
+    display: block;
+}
+.wrap{
+    min-height: 800px;
+    min-width:400px;
+    background-color: rgba(255,255,255,0.2);
+    box-shadow: 0px 2px 5px  #888888;
+}
+.content{
+    background-color: aqua;
+    width:50%;
+    height:50%;
+    margin:0 auto;
+}
+.wrap>.row> div {
+    margin:30px 0;
+    /*border-right: 1px solid red;*/
+}
